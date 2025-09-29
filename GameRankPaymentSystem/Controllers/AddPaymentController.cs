@@ -12,7 +12,7 @@ public class AddPaymentController:ControllerBase
 {
     private readonly PaymentDBContext _context;
 
-    AddPaymentController(PaymentDBContext context)
+    public AddPaymentController(PaymentDBContext context)
     {
         _context = context;
     }
@@ -33,10 +33,10 @@ public class AddPaymentController:ControllerBase
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var CardInfo = new PaymentData()
             {
-                CardNumber = cardData.CardNumber,
-                CardExpiration = cardData.CardExpiration,
-                CardHolderName = cardData.CardHolderName,
-                CardSecurityNumber = cardData.CardSecurityNumber,
+                cardNumber = cardData.CardNumber,
+                cardExpiration = cardData.CardExpiration,
+                cardHolderName = cardData.CardHolderName ,
+                cardSecurityCode= cardData.CardSecurityNumber,
                 StopList = false,
                 userId = userId
             };

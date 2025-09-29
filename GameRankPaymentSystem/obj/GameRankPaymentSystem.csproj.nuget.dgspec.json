@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/klounadich/dev/GameRankPaymentSystem/GameRankPaymentSystem/GameRankPaymentSystem.csproj": {}
+    "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj": {}
   },
   "projects": {
-    "/home/klounadich/dev/GameRankPaymentSystem/GameRankPaymentSystem/GameRankPaymentSystem.csproj": {
+    "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/klounadich/dev/GameRankPaymentSystem/GameRankPaymentSystem/GameRankPaymentSystem.csproj",
+        "projectUniqueName": "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj",
         "projectName": "GameRankPaymentSystem",
-        "projectPath": "/home/klounadich/dev/GameRankPaymentSystem/GameRankPaymentSystem/GameRankPaymentSystem.csproj",
+        "projectPath": "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj",
         "packagesPath": "/home/klounadich/.nuget/packages/",
-        "outputPath": "/home/klounadich/dev/GameRankPaymentSystem/GameRankPaymentSystem/obj/",
+        "outputPath": "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/klounadich/.nuget/NuGet/NuGet.Config"
@@ -41,6 +41,10 @@
             "FluentValidation": {
               "target": "Package",
               "version": "[8.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -74,12 +78,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.19, 8.0.19]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -88,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.118/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
