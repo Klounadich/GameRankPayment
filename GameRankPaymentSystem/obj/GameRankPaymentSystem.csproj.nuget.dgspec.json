@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj": {}
+    "/home/klounadich/dev/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj": {}
   },
   "projects": {
-    "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj": {
+    "/home/klounadich/dev/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj",
+        "projectUniqueName": "/home/klounadich/dev/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj",
         "projectName": "GameRankPaymentSystem",
-        "projectPath": "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj",
+        "projectPath": "/home/klounadich/dev/GameRankPayment/GameRankPaymentSystem/GameRankPaymentSystem.csproj",
         "packagesPath": "/home/klounadich/.nuget/packages/",
-        "outputPath": "/home/klounadich/DEV/GameRankPayment/GameRankPaymentSystem/obj/",
+        "outputPath": "/home/klounadich/dev/GameRankPayment/GameRankPaymentSystem/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/klounadich/.nuget/NuGet/NuGet.Config"
@@ -78,6 +78,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.19, 8.0.19]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -86,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.118/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.119/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

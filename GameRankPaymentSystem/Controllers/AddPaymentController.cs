@@ -46,8 +46,30 @@ public class AddPaymentController:ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(new { Message = ex.Message });
+            return BadRequest(new { Messsage = "Произошла ошибка при добавлении карты"});
         }
 
+    }
+
+    [HttpPost("deletecard")]
+    [Authorize]
+    public async Task<IActionResult> DeleteCard([FromBody] string cardNumber)
+    {
+        try
+        {
+            var findsCard = _context.PaymentData.FirstOrDefault(x => x.cardNumber == cardNumber);
+            if (findsCard != null)
+            {
+                _context.PaymentData.Remove(findsCard);
+                await _context.SaveChangesAsync();
+                return Ok(new { Message = "Карта успешно удалена" });
+            }
+
+            return BadRequest(new { Message = "Карта не была найдена." });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { Message = ex.Message });
+        }
     }
 }
