@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GameRankPaymentSystem.Controllers;
 [ApiController]
-[Route("api/addpayment")]
+[Route("api3/addpayment")]
 public class AddPaymentController:ControllerBase
 {
     private readonly PaymentDBContext _context;
@@ -71,5 +71,25 @@ public class AddPaymentController:ControllerBase
         {
             return BadRequest(new { Message = ex.Message });
         }
+    }
+
+    [HttpGet("getcard")]
+    [Authorize]
+    public async Task<IActionResult> GetUsersCards()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId != null)
+        {
+            var UserCards = _context.PaymentData.Where(x => x.userId == userId)
+                .Select(x => x.cardNumber).ToList();
+            if (UserCards.Any())
+            {
+                return Ok(new {Cards= UserCards});
+            }
+            return Ok(new { Cards =  "null" });
+            
+        }
+
+        return Unauthorized(new { Message = "Не удалось получить данные о пользователе" });
     }
 }
