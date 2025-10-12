@@ -3,6 +3,7 @@ using GameRankPaymentSystem.Models;
 using GameRankPaymentSystem.ValidatorModules;
 using GameRankPaymentSystem.Data;
 using System.Security.Claims;
+using GameRankPaymentSystem.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
 namespace GameRankPaymentSystem.Controllers;
@@ -10,11 +11,27 @@ namespace GameRankPaymentSystem.Controllers;
 [Route("api3/addpayment")]
 public class AddPaymentController:ControllerBase
 {
+    private readonly IPaymentService _paymentService;
     private readonly PaymentDBContext _context;
 
-    public AddPaymentController(PaymentDBContext context)
+    public AddPaymentController(PaymentDBContext context , IPaymentService paymentService)
     {
         _context = context;
+        _paymentService = paymentService;
+    }
+
+    [HttpPost("pay")]
+    
+    public async Task<IActionResult> Donate([FromBody] CardData cardData)
+    {
+        var IsPay = _paymentService.Pay(cardData , 500);
+        return Ok();
+    }
+    [HttpPost("savepay")]
+    [Authorize]
+    public async Task<IActionResult> Donate([FromBody] string CardNumber)
+    {
+        return Ok();
     }
     [HttpPost("addcard")]
     [Authorize]

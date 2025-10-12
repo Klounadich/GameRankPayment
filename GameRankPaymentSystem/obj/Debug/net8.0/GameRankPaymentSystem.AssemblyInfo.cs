@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameRankPaymentSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf6f9a7996c272b3cbe1637ddfff90d636755f3e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95ee27c1eba053fd30a3f03f78e26729aa6cde7a")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameRankPaymentSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameRankPaymentSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
