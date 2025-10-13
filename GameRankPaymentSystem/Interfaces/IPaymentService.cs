@@ -3,5 +3,5 @@ namespace GameRankPaymentSystem.Interfaces;
 
 public interface IPaymentService
 {
-    public  Task<bool> Pay(CardData cardData , float amount);
+    public  bool Pay(CardDataForPay cardData);
 }

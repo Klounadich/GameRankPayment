@@ -10,7 +10,7 @@ public class PaymentService : IPaymentService
     {
         _cardCheck=cardCheck;
     }
-    public async Task<bool> Pay(CardData cardData , float amount)
+    public  bool Pay(CardDataForPay cardData)
     {
         try
         {
@@ -18,13 +18,22 @@ public class PaymentService : IPaymentService
             var isFresh = _cardCheck.ValidateCardExpiration(cardData.CardExpiration);
             if (isFresh)
             {
-                
+                Console.WriteLine("Card expiration valid");
+                // запрос на оплату
+                var isPay = _cardCheck.Pay(cardData);
+                if (isPay)
+                {
+                    // траим сохранить в 1с
+                    return true;
+                }
             }
+
+            return false;
         }
         catch (Exception ex)
         {
             return false;
         }
-        return true;
+        
     }
 }

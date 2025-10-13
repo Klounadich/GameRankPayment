@@ -22,10 +22,14 @@ public class AddPaymentController:ControllerBase
 
     [HttpPost("pay")]
     
-    public async Task<IActionResult> Donate([FromBody] CardData cardData)
+    public async Task<IActionResult> Donate([FromBody] CardDataForPay cardData)
     {
-        var IsPay = _paymentService.Pay(cardData , 500);
-        return Ok();
+        var IsPay = _paymentService.Pay(cardData);
+        if (IsPay)
+        {
+            return Ok(new { Message = "Оплата прошла успешно" });
+        }
+        return BadRequest();
     }
     [HttpPost("savepay")]
     [Authorize]
