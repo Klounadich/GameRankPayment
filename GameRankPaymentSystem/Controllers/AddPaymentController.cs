@@ -21,11 +21,12 @@ public class AddPaymentController:ControllerBase
     }
 
     [HttpPost("pay")]
-    
-    public async Task<IActionResult> Donate([FromBody] CardDataForPay cardData)
+    [Authorize]
+    public IActionResult Donate([FromBody] CardDataForPay cardData)
     {
-        var IsPay = _paymentService.Pay(cardData);
-        if (IsPay)
+        string? payerContact = User.FindFirstValue(ClaimTypes.Email);
+        var isPay =  _paymentService.Pay(cardData , payerContact);
+        if (isPay)
         {
             return Ok(new { Message = "Оплата прошла успешно" });
         }
@@ -35,6 +36,34 @@ public class AddPaymentController:ControllerBase
     [Authorize]
     public async Task<IActionResult> Donate([FromBody] string CardNumber)
     {
+        var findsCard = _context.PaymentData.Where(x => x.cardNumber == CardNumber).ToList();
+        if (findsCard.Count > 0)
+        {
+            var cardData = new CardDataForPay()
+            {
+                CardNumber = CardNumber,
+                CardExpiration = findsCard.FirstOrDefault().cardExpiration,
+                CardHolderName = findsCard.FirstOrDefault().cardHolderName,
+                CardSecurityNumber = findsCard.FirstOrDefault().cardSecurityCode,
+                Amount = 500 // затычка
+
+
+            };
+            
+            string? payerContact = User.FindFirstValue(ClaimTypes.Email);
+            var isPay =  _paymentService.Pay(cardData , payerContact);
+            if (isPay)
+            {
+                return Ok(new { Message = "Оплата прошла успешно" });
+            }
+            
+            
+        }
+        else
+        {
+            return BadRequest(new {Message="Не удалось найти данные карты"});
+        }
+
         return Ok();
     }
     [HttpPost("addcard")]

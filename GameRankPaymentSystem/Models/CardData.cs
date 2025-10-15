@@ -16,5 +16,6 @@ public class CardDataForPay
     public string CardExpiration { get; set; }
     public string CardSecurityNumber { get; set; }
     public float Amount { get; set; }
+    
 
 }

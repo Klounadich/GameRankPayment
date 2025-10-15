@@ -6,11 +6,13 @@ namespace GameRankPaymentSystem.Services;
 public class PaymentService : IPaymentService
 {
     private readonly CardExpirationCheck _cardCheck;
-    public PaymentService(CardExpirationCheck cardCheck)
+    private readonly IOneCService _oneC;
+    public PaymentService(CardExpirationCheck cardCheck , IOneCService oneC)
     {
+        _oneC = oneC;
         _cardCheck=cardCheck;
     }
-    public  bool Pay(CardDataForPay cardData)
+    public  bool Pay(CardDataForPay cardData , string PayerContact)
     {
         try
         {
@@ -23,7 +25,9 @@ public class PaymentService : IPaymentService
                 var isPay = _cardCheck.Pay(cardData);
                 if (isPay)
                 {
+                    
                     // траим сохранить в 1с
+                      _oneC.AddTransaction(cardData.CardNumber , DateTime.Now.ToShortDateString(), cardData.Amount , PayerContact);
                     return true;
                 }
             }
