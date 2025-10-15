@@ -19,3 +19,9 @@ public class CardDataForPay
     
 
 }
+
+public class SaveCard
+{
+    public string CardNumber { get; set; }
+    public float Amount { get; set; }
+}

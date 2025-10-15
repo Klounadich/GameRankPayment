@@ -21,9 +21,16 @@ public class AddPaymentController:ControllerBase
     }
 
     [HttpPost("pay")]
-    [Authorize]
-    public IActionResult Donate([FromBody] CardDataForPay cardData)
+    
+    public async Task<IActionResult> Donate([FromBody] CardDataForPay cardData)
     {
+        var validator = new CardValidator1();
+        var validationResult = await validator.ValidateAsync(cardData);
+        if (!validationResult.IsValid)
+        {
+            var firsterror = validationResult.Errors.First().ErrorMessage;
+            return BadRequest(new { Message = firsterror });
+        }
         string? payerContact = User.FindFirstValue(ClaimTypes.Email);
         var isPay =  _paymentService.Pay(cardData , payerContact);
         if (isPay)
@@ -34,18 +41,18 @@ public class AddPaymentController:ControllerBase
     }
     [HttpPost("savepay")]
     [Authorize]
-    public async Task<IActionResult> Donate([FromBody] string CardNumber)
+    public async Task<IActionResult> Donate([FromBody] SaveCard CardData)
     {
-        var findsCard = _context.PaymentData.Where(x => x.cardNumber == CardNumber).ToList();
+        var findsCard = _context.PaymentData.Where(x => x.cardNumber == CardData.CardNumber).ToList();
         if (findsCard.Count > 0)
         {
             var cardData = new CardDataForPay()
             {
-                CardNumber = CardNumber,
+                CardNumber = CardData.CardNumber,
                 CardExpiration = findsCard.FirstOrDefault().cardExpiration,
                 CardHolderName = findsCard.FirstOrDefault().cardHolderName,
                 CardSecurityNumber = findsCard.FirstOrDefault().cardSecurityCode,
-                Amount = 500 // затычка
+                Amount = CardData.Amount,
 
 
             };

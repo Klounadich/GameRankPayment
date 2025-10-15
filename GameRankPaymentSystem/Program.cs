@@ -16,6 +16,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IPaymentService , PaymentService>();
 builder.Services.AddScoped<CardExpirationCheck>();
+builder.Services.AddScoped<IOneCService, OneCService>();
 builder.Services.AddDbContext<PaymentDBContext>(options => 
     options.UseNpgsql(builder.Configuration.GetConnectionString("PaymentConnection")));
 builder.Services.AddCors(options =>
