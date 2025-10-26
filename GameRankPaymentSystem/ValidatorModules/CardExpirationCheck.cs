@@ -1,4 +1,5 @@
 using GameRankPaymentSystem.Models;
+using GameRankPaymentSystem.Models.DTOs;
 
 namespace GameRankPaymentSystem.ValidatorModules;
 
@@ -26,7 +27,7 @@ public class CardExpirationCheck
 
     }
 
-    public bool Pay(CardDataForPay cardData)
+    public async Task<bool>  Pay(CardDataForPay cardData)
     {
         if (cardData.Amount > 0)
         {

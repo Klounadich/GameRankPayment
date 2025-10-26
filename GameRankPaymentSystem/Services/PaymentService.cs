@@ -1,5 +1,6 @@
 using GameRankPaymentSystem.Interfaces;
 using GameRankPaymentSystem.Models;
+using GameRankPaymentSystem.Models.DTOs;
 using GameRankPaymentSystem.ValidatorModules;
 namespace GameRankPaymentSystem.Services;
 
@@ -12,7 +13,7 @@ public class PaymentService : IPaymentService
         _oneC = oneC;
         _cardCheck=cardCheck;
     }
-    public  bool Pay(CardDataForPay cardData , string PayerContact)
+    public async Task<bool> AsyncPay(CardDataForPay cardData , string PayerContact)
     {
         try
         {
@@ -22,7 +23,7 @@ public class PaymentService : IPaymentService
             {
                 Console.WriteLine("Card expiration valid");
                 // запрос на оплату
-                var isPay = _cardCheck.Pay(cardData);
+                var isPay = await _cardCheck.Pay(cardData);
                 if (isPay)
                 {
                     

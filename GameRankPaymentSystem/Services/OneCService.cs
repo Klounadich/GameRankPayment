@@ -6,7 +6,7 @@ namespace GameRankPaymentSystem.Services;
 
 public class OneCService : IOneCService
 {
-    public async Task AddTransaction(string CardNumber, string TransactionDate , float Amount , string Contact)
+    public async Task AddTransaction(string CardNumber, string TransactionDate , decimal Amount , string Contact)
     {
         
     }

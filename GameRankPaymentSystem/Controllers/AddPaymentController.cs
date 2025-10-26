@@ -4,6 +4,7 @@ using GameRankPaymentSystem.ValidatorModules;
 using GameRankPaymentSystem.Data;
 using System.Security.Claims;
 using GameRankPaymentSystem.Interfaces;
+using GameRankPaymentSystem.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
 
 namespace GameRankPaymentSystem.Controllers;
@@ -21,7 +22,7 @@ public class AddPaymentController:ControllerBase
     }
 
     [HttpPost("pay")]
-    
+    //[Authorize]
     public async Task<IActionResult> Donate([FromBody] CardDataForPay cardData)
     {
         var validator = new CardValidator1();
@@ -32,8 +33,8 @@ public class AddPaymentController:ControllerBase
             return BadRequest(new { Message = firsterror });
         }
         string? payerContact = User.FindFirstValue(ClaimTypes.Email);
-        var isPay =  _paymentService.Pay(cardData , payerContact);
-        if (isPay)
+        var isPay =  _paymentService.AsyncPay(cardData , payerContact);
+        if (isPay.IsCompleted)
         {
             return Ok(new { Message = "Оплата прошла успешно" });
         }
@@ -58,8 +59,8 @@ public class AddPaymentController:ControllerBase
             };
             
             string? payerContact = User.FindFirstValue(ClaimTypes.Email);
-            var isPay =  _paymentService.Pay(cardData , payerContact);
-            if (isPay)
+            var isPay =  _paymentService.AsyncPay(cardData , payerContact);
+            if (isPay.IsCompleted)
             {
                 return Ok(new { Message = "Оплата прошла успешно" });
             }
@@ -144,7 +145,7 @@ public class AddPaymentController:ControllerBase
                 return Ok(new {Cards= UserCards});
             }
             return Ok(new { Cards =  "null" });
-            
+                // маскинг на бэкэ сделать и отдавать ещё айди карты чтобы по ней найти уже инфу о карте и сделать списание
         }
 
         return Unauthorized(new { Message = "Не удалось получить данные о пользователе" });

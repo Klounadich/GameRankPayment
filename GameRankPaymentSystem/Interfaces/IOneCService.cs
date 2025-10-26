@@ -3,6 +3,6 @@ namespace GameRankPaymentSystem.Interfaces;
 
 public interface IOneCService
 {
-    public Task AddTransaction(string CardNumber, string TransactionDate , float Amount , string Contact);
+    public Task AddTransaction(string CardNumber, string TransactionDate , decimal Amount , string Contact);
     
 }

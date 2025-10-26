@@ -1,3 +1,5 @@
+using GameRankPaymentSystem.Models.DTOs;
+
 namespace GameRankPaymentSystem.ValidatorModules;
 using FluentValidation;
 using GameRankPaymentSystem.Models;
